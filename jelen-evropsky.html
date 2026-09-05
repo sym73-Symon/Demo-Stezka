@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jelen evropský</title>
+<style>
+  :root{
+    --les-dark:#27461D;--les-dark2:#1a2f13;--les-lime:#9DC042;--les-lime-lt:#b2d45a;
+    --paper:#F4F6F0;--ink:#22301A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{min-height:100%}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:#27461D;
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+    padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 90px);color:var(--paper);
+  }
+  .card{
+    width:min(480px,92vw);margin-top:10px;background:var(--paper);color:var(--ink);
+    border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px #000a,0 0 0 1px #ffffff14;
+  }
+  .photo{
+    position:relative;width:100%;aspect-ratio:10/16;max-height:64vh;overflow:hidden;background:#16240f;
+    cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .photo:active img{transform:scale(1.02)}
+  .bar{height:6px;background:#dfe6d5;cursor:pointer;position:relative}
+  .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--les-lime)}
+  .controlbar{display:flex;align-items:center;gap:12px;padding:8px 18px 6px;background:var(--paper)}
+  .pbtn{
+    flex:0 0 auto;width:42px;height:42px;border-radius:50%;
+    background:var(--les-lime);border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px -4px #9dc04277;transition:transform .15s,background .2s;
+  }
+  .pbtn:hover{background:var(--les-lime-lt)}
+  .pbtn:active{transform:scale(.93)}
+  .pbtn svg{width:20px;height:20px;fill:#1a2f13;margin-left:2px}
+  .pbtn.playing svg.ico-play{display:none}
+  .pbtn .ico-pause{display:none;margin-left:0}
+  .pbtn.playing .ico-pause{display:block}
+  .ctext{flex:1;min-width:0}
+  .ctext .t{font-weight:700;font-size:13px;color:var(--les-dark)}
+  .ctext .s{font-size:11px;color:#6a7a5e;margin-top:1px}
+  .body{padding:4px 24px 10px;text-align:center}
+  h1{font-size:20px;line-height:1;letter-spacing:-.5px;color:var(--les-dark);font-weight:800}
+  .latin{font-style:italic;color:#5a6b4a;font-size:12px;margin-top:1px}
+  .langs{margin-top:5px;font-size:10.5px;letter-spacing:.5px;color:#7a8a6e;line-height:1.7}
+  .logo-below{margin-top:16px;width:100%;text-align:center;padding:0 20px}
+  .logo-below img{width:200px;max-width:70%;height:auto;display:inline-block}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="photo" id="photo">
+      <img src="jelen.jpg" alt="Jelen evropský">
+    </div>
+    <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
+    <div class="controlbar">
+      <button class="pbtn" id="pbtn" aria-label="Přehrát zvuk">
+        <svg class="ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ico-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="ctext">
+        <div class="t">Přehrát zvuk</div>
+        <div class="s">Troubení jelena v říji</div>
+      </div>
+    </div>
+    <div class="body">
+      <h1>Jelen evropský</h1>
+      <div class="latin">Cervus elaphus</div>
+      <div class="langs">Red deer&nbsp;&middot;&nbsp;Rothirsch&nbsp;&middot;&nbsp;Олень благородный</div>
+    </div>
+  </div>
+  <div class="logo-below"><img src="logo-lesycr.png" alt="Lesy ČR"></div>
+  <audio id="au" preload="metadata" src="jelen.mp3"></audio>
+<script>
+  var au=document.getElementById('au'),pbtn=document.getElementById('pbtn'),photo=document.getElementById('photo');
+  var fill=document.getElementById('fill'),bar=document.getElementById('bar');
+  function toggle(){au.paused?au.play():au.pause()}
+  pbtn.addEventListener('click',toggle);
+  photo.addEventListener('click',toggle);
+  au.onplay=function(){pbtn.classList.add('playing')};
+  au.onpause=function(){pbtn.classList.remove('playing')};
+  au.ontimeupdate=function(){fill.style.width=(au.currentTime/au.duration*100||0)+'%'};
+  au.onended=function(){pbtn.classList.remove('playing');fill.style.width='0%'};
+  bar.addEventListener('click',function(e){var r=bar.getBoundingClientRect();au.currentTime=(e.clientX-r.left)/r.width*au.duration});
+</script>
+</body>
+</html>
