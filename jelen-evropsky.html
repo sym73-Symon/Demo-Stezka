@@ -22,33 +22,33 @@
     border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px #000a,0 0 0 1px #ffffff14;
   }
   .photo{
-    position:relative;width:100%;aspect-ratio:10/16;max-height:64vh;overflow:hidden;background:#16240f;
+    position:relative;width:100%;aspect-ratio:10/16;max-height:70vh;overflow:hidden;background:#16240f;
     cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
   }
   .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
   .photo:active img{transform:scale(1.02)}
   .bar{height:6px;background:#dfe6d5;cursor:pointer;position:relative}
   .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--les-lime)}
-  .controlbar{display:flex;align-items:center;gap:12px;padding:8px 18px;background:var(--paper)}
+  .controlbar{display:flex;align-items:center;gap:12px;padding:8px 18px 6px;background:var(--paper)}
   .pbtn{
-    flex:0 0 auto;width:46px;height:46px;border-radius:50%;
+    flex:0 0 auto;width:42px;height:42px;border-radius:50%;
     background:var(--les-lime);border:none;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 18px -4px #9dc04277;transition:transform .15s,background .2s;
   }
   .pbtn:hover{background:var(--les-lime-lt)}
   .pbtn:active{transform:scale(.93)}
-  .pbtn svg{width:22px;height:22px;fill:#1a2f13;margin-left:2px}
+  .pbtn svg{width:20px;height:20px;fill:#1a2f13;margin-left:2px}
   .pbtn.playing svg.ico-play{display:none}
   .pbtn .ico-pause{display:none;margin-left:0}
   .pbtn.playing .ico-pause{display:block}
   .ctext{flex:1;min-width:0}
   .ctext .t{font-weight:700;font-size:13px;color:var(--les-dark)}
   .ctext .s{font-size:11px;color:#6a7a5e;margin-top:1px}
-  .body{padding:8px 24px 10px;text-align:center}
-  h1{font-size:21px;line-height:1.05;letter-spacing:-.5px;color:var(--les-dark);font-weight:800}
-  .latin{font-style:italic;color:#5a6b4a;font-size:13px;margin-top:2px}
-  .langs{margin-top:6px;font-size:11px;letter-spacing:.5px;color:#7a8a6e;line-height:1.7}
+  .body{padding:4px 24px 10px;text-align:center}
+  h1{font-size:20px;line-height:1;letter-spacing:-.5px;color:var(--les-dark);font-weight:800}
+  .latin{font-style:italic;color:#5a6b4a;font-size:12px;margin-top:1px}
+  .langs{margin-top:5px;font-size:10.5px;letter-spacing:.5px;color:#7a8a6e;line-height:1.7}
   .logo-below{margin-top:16px;width:100%;text-align:center;padding:0 20px}
   .logo-below img{width:200px;max-width:70%;height:auto;display:inline-block}
 </style>
